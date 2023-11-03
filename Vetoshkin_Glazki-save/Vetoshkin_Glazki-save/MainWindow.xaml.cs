@@ -23,7 +23,7 @@ namespace Vetoshkin_Glazki_save
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new ServicePage());
+            MainFrame.Navigate(new AgentPage());
             Manager.MainFrame = MainFrame;
         }
 
