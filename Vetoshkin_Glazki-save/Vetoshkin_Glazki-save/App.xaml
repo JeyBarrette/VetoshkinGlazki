@@ -21,6 +21,9 @@
         <Style TargetType="ComboBox">
             <Setter Property="FontFamily" Value="Century Gothic"></Setter>
         </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Century Gothic"></Setter>
+        </Style>
     </Application.Resources>
 </Application>
 

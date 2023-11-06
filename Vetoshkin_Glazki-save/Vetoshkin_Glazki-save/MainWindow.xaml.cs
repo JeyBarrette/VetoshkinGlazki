@@ -43,5 +43,15 @@ namespace Vetoshkin_Glazki_save
                 BtnBack.Visibility = Visibility.Hidden;
             }
         }
+
+        private void LeftDirButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RightDirButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
