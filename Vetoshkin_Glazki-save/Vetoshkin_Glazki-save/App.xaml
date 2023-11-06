@@ -12,5 +12,15 @@
             <Setter Property="FontSize" Value="20"></Setter>
             <Setter Property="FontFamily" Value="Century Gothic"></Setter>
         </Style>
+        <Style TargetType="ListViewItem">
+            <Setter Property="FontFamily" Value="Century Gothic"></Setter>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontFamily" Value="Century Gothic"></Setter>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="FontFamily" Value="Century Gothic"></Setter>
+        </Style>
     </Application.Resources>
 </Application>
+

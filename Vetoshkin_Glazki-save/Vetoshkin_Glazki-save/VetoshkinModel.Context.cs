@@ -16,7 +16,6 @@ namespace Vetoshkin_Glazki_save
     public partial class Vetoshkin_GlazkiEntities : DbContext
     {
         private static Vetoshkin_GlazkiEntities _context;
-
         public static Vetoshkin_GlazkiEntities GetContext()
         {
             if (_context == null)

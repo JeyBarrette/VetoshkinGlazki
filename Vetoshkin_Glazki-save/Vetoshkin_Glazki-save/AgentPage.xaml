@@ -18,13 +18,24 @@
                 <TextBox Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"
                          Width="300" FontSize="15" Margin="5"></TextBox>
                 <ComboBox Name="SortBy" SelectionChanged="SortBy_SelectionChanged"
-                          Width="260" FontSize="15" Margin="5">
+                          Width="240" FontSize="15" Margin="5">
                     <TextBlock>Сортировка</TextBlock>
-                    <TextBlock></TextBlock>
-                    <TextBlock></TextBlock>
+                    <TextBlock>наименование по возрастанию</TextBlock>
+                    <TextBlock>наименование по убыванию</TextBlock>
+                    <TextBlock>скидка по возрастанию</TextBlock>
+                    <TextBlock>скидка по убыванию</TextBlock>
+                    <TextBlock>приоритет по возрастанию</TextBlock>
+                    <TextBlock>приоритет по убыванию</TextBlock>
                 </ComboBox>
-                <ComboBox Name="ComboType" SelectionChanged="ComboType_SelectionChanged" FontSize="15" Width="200" Margin="5">
-                    <TextBlock>Все</TextBlock>
+                <ComboBox Name="ComboType" SelectionChanged="ComboType_SelectionChanged" FontSize="15" 
+                          Width="200" Margin="5">
+                    <TextBlock>Все типы</TextBlock>
+                    <TextBlock>МФО</TextBlock>
+                    <TextBlock>ООО</TextBlock>
+                    <TextBlock>ЗАО</TextBlock>
+                    <TextBlock>МКК</TextBlock>
+                    <TextBlock>ОАО</TextBlock>
+                    <TextBlock>ПАО</TextBlock>
                 </ComboBox>
             </StackPanel>
         </WrapPanel>
@@ -61,7 +72,6 @@
                         <TextBlock Text="Продаж за год" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="16" ></TextBlock>
                         <TextBlock Text="{Binding Phone}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="16" ></TextBlock>
                         <TextBlock Text="{Binding Priority, StringFormat=Приоритетность: {0}}" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" FontSize="16"></TextBlock>
-                        <TextBlock Text="%" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Right" FontSize="20"></TextBlock>
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>

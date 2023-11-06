@@ -186,19 +186,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\picture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="VetoshkinModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>VetoshkinModel.Context.cs</LastGenOutput>
       <DependentUpon>VetoshkinModel.edmx</DependentUpon>
+      <LastGenOutput>VetoshkinModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="VetoshkinModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>VetoshkinModel.edmx</DependentUpon>
       <LastGenOutput>VetoshkinModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
