@@ -80,7 +80,7 @@ namespace Vetoshkin_Glazki_save
                 return;
             }
 
-            _currentAgent.AgentTypeID = ComboType.SelectedIndex;
+            _currentAgent.AgentTypeID = ComboType.SelectedIndex + 1;
 
             if (_currentAgent.ID == 0)
                 Vetoshkin_GlazkiEntities.GetContext().Agent.Add(_currentAgent);
@@ -110,6 +110,7 @@ namespace Vetoshkin_Glazki_save
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
             var currentAgent = (sender as Button).DataContext as Agent;
+            //var currentProductSale = currentProductSale.Where(p => p.AgentID == currentProductSale.ID).ToList();
             if (MessageBox.Show("Вы точно хотите выполнить удаление?", "Внимание!",
                 MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
@@ -118,7 +119,6 @@ namespace Vetoshkin_Glazki_save
                     Vetoshkin_GlazkiEntities.GetContext().Agent.Remove(currentAgent);
                     Vetoshkin_GlazkiEntities.GetContext().SaveChanges();
                     Manager.MainFrame.GoBack();
-
                 }
                 catch (Exception ex)
                 {
