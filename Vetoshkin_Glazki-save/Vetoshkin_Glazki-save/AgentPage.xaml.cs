@@ -161,27 +161,27 @@ namespace Vetoshkin_Glazki_save
             }
             if (ComboType.SelectedIndex == 1)
             {
-                currentGlazki = currentGlazki.Where(p => p.AgentTypeID == 3).ToList();
+                currentGlazki = currentGlazki.Where(p => p.AgentTypeString == "МФО").ToList();
             }
             if (ComboType.SelectedIndex == 2)
             {
-                currentGlazki = currentGlazki.Where(p => p.AgentTypeID == 5).ToList();
+                currentGlazki = currentGlazki.Where(p => p.AgentTypeString == "ООО").ToList();
             }
             if (ComboType.SelectedIndex == 3)
             {
-                currentGlazki = currentGlazki.Where(p => p.AgentTypeID == 1).ToList();
+                currentGlazki = currentGlazki.Where(p => p.AgentTypeString == "ЗАО").ToList();
             }
             if (ComboType.SelectedIndex == 4)
             {
-                currentGlazki = currentGlazki.Where(p => p.AgentTypeID == 2).ToList();
+                currentGlazki = currentGlazki.Where(p => p.AgentTypeString == "МКК").ToList();
             }
             if (ComboType.SelectedIndex == 5)
             {
-                currentGlazki = currentGlazki.Where(p => p.AgentTypeID == 4).ToList();
+                currentGlazki = currentGlazki.Where(p => p.AgentTypeString == "ОАО").ToList();
             }
             if (ComboType.SelectedIndex == 6)
             {
-                currentGlazki = currentGlazki.Where(p => p.AgentTypeID == 6).ToList();
+                currentGlazki = currentGlazki.Where(p => p.AgentTypeString == "ПАО").ToList();
             }
             AgentListView.ItemsSource = currentGlazki;
             TableList = currentGlazki;
@@ -234,6 +234,7 @@ namespace Vetoshkin_Glazki_save
             {
                 Vetoshkin_GlazkiEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
                 AgentListView.ItemsSource = Vetoshkin_GlazkiEntities.GetContext().Agent.ToList();
+                UpdateAgents();
             }
         }
     }
