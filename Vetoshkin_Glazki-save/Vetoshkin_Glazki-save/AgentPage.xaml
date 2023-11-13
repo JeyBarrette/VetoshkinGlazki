@@ -10,12 +10,12 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left">
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
             <StackPanel Margin="5" Orientation="Horizontal">
                 <TextBox Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"
                          Width="300" FontSize="15" Margin="5"></TextBox>
@@ -42,6 +42,8 @@
             </StackPanel>
         </WrapPanel>
 
+        <Button Content="Добавить агента" Name="AddButton" Click="AddButton_Click"
+                HorizontalAlignment="Right" VerticalAlignment="Bottom"></Button>
         <ListView Name="AgentListView" Grid.Row="1">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -75,6 +77,9 @@
                         <TextBlock Text="" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="16" ></TextBlock>
                         <TextBlock Text="{Binding Phone}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="16" ></TextBlock>
                         <TextBlock Text="{Binding Priority, StringFormat=Приоритетность: {0}}" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" FontSize="16"></TextBlock>
+
+                        <Button Content="Редактировать" Name="EditButton" Click="EditButton_Click"
+                HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="5"></Button>
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
