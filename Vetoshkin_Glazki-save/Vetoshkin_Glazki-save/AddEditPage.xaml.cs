@@ -110,19 +110,27 @@ namespace Vetoshkin_Glazki_save
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
             var currentAgent = (sender as Button).DataContext as Agent;
-            //var currentProductSale = currentProductSale.Where(p => p.AgentID == currentProductSale.ID).ToList();
-            if (MessageBox.Show("Вы точно хотите выполнить удаление?", "Внимание!",
-                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+
+            var currentProductSale = Vetoshkin_GlazkiEntities.GetContext().ProductSale.ToList();
+            currentProductSale = currentProductSale.Where(p => p.AgentID == currentAgent.ID).ToList();
+
+            if (currentProductSale.Count != 0)
+                MessageBox.Show("Невозможно выполнить удаление, так как существуют записи на этого агента");
+            else
             {
-                try
+                if (MessageBox.Show("Вы точно хотите выполнить удаление?", "Внимание!",
+                    MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    Vetoshkin_GlazkiEntities.GetContext().Agent.Remove(currentAgent);
-                    Vetoshkin_GlazkiEntities.GetContext().SaveChanges();
-                    Manager.MainFrame.GoBack();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message.ToString());
+                    try
+                    {
+                        Vetoshkin_GlazkiEntities.GetContext().Agent.Remove(currentAgent);
+                        Vetoshkin_GlazkiEntities.GetContext().SaveChanges();
+                        Manager.MainFrame.GoBack();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message.ToString());
+                    }
                 }
             }
         }
