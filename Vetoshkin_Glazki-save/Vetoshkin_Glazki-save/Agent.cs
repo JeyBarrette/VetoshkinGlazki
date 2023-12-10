@@ -11,8 +11,8 @@ namespace Vetoshkin_Glazki_save
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Windows.Automation.Peers;
+    using System.Windows.Media;
+    using System.Xml.Schema;
 
     public partial class Agent
     {
@@ -35,7 +35,7 @@ namespace Vetoshkin_Glazki_save
         public string DirectorName { get; set; }
         public string INN { get; set; }
         public string KPP { get; set; }
-
+    
         public virtual AgentType AgentType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AgentPriorityHistory> AgentPriorityHistory { get; set; }
@@ -52,18 +52,70 @@ namespace Vetoshkin_Glazki_save
             }
         }
 
-        public int ProdCount => GetAllProducts();
-
-        public int GetAllProducts()
+        public int Sales
         {
-            int count = 0;
-            var context = Vetoshkin_GlazkiEntities.GetContext().ProductSale.Where(p => p.AgentID == ID).ToList();
-            foreach (var productSale in context)
+            get
             {
-                count = productSale.ProductCount;
+                int total = 0;
+                foreach (ProductSale productSales in this.ProductSale)
+                {
+                    total += productSales.ProductCount * Convert.ToInt32(productSales.Product.MinCostForAgent);
+                }
+                return total;
             }
+        }
 
-            return count;
+        public int SalePercent
+        {
+            get
+            {
+                int total = 0;
+                foreach (ProductSale productSales in this.ProductSale)
+                {
+                    total += productSales.ProductCount * Convert.ToInt32(productSales.Product.MinCostForAgent);
+                }
+
+                int sale = 0;
+
+                if (total > 10000 && total < 50000)
+                {
+                    sale = 5;
+                }
+                else if (total > 50000 && total < 150000)
+                {
+                    sale = 10;
+                }
+                else if (total > 150000 && total < 500000)
+                {
+                    sale = 20;
+                }
+                else if (total > 500000)
+                {
+                    sale = 25;
+                }
+
+                return sale;
+            }
+        }
+
+        public SolidColorBrush FonStyle
+        {
+            get
+            {
+                int total = 0;
+                foreach (ProductSale productSales in this.ProductSale)
+                {
+                    total += productSales.ProductCount * Convert.ToInt32(productSales.Product.MinCostForAgent);
+                }
+                if (total >= 500000)
+                {
+                    return (SolidColorBrush)new BrushConverter().ConvertFromString("LightGreen");
+                }
+                else
+                {
+                    return (SolidColorBrush)new BrushConverter().ConvertFromString("White");
+                }
+            }
         }
     }
 }

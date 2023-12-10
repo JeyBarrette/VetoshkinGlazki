@@ -22,5 +22,13 @@ namespace Vetoshkin_Glazki_save
     
         public virtual Agent Agent { get; set; }
         public virtual Product Product { get; set; }
+
+        public string ProductTitleString
+        {
+            get
+            {
+                return Product.Title;
+            }
+        }
     }
 }

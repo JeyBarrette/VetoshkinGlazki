@@ -42,16 +42,20 @@
             </StackPanel>
         </WrapPanel>
 
-        <Button Content="Добавить агента" Name="AddButton" Click="AddButton_Click"
+        <WrapPanel Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+            <Button Content="Добавить агента" Name="AddButton" Click="AddButton_Click"
                 HorizontalAlignment="Right" VerticalAlignment="Bottom"></Button>
-        <ListView Name="AgentListView" Grid.Row="1">
+            <Button Name = "PriorityButton" Content="Изменить приоритет" Width="250"
+                Click="PriorityButton_Click" Visibility="Hidden"></Button>
+        </WrapPanel>
+        <ListView Name="AgentListView" Grid.Row="1" SelectionMode="Extended" SelectionChanged="AgentListView_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid Background="{Binding FonStyle}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="120"></ColumnDefinition>
-                            <ColumnDefinition Width="600"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="500"></ColumnDefinition>
+                            <ColumnDefinition Width="1300"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
                         <Image Width="100" Grid.Column="0" Stretch="UniformToFill" HorizontalAlignment="Center"
@@ -72,14 +76,16 @@
                             <TextBlock Text=" | " Grid.Row="0" HorizontalAlignment="Center" FontSize="20"></TextBlock>
                             <TextBlock Text="{Binding Title}" Grid.Row="0" HorizontalAlignment="Left" FontSize="20"></TextBlock>
                         </StackPanel>
-                       
-                        <TextBlock Text="{Binding ProdCount, StringFormat={}{0} продаж за год}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="16" ></TextBlock>
+
+                        <TextBlock Text ="{Binding SalePercent, StringFormat=Скидка {0} %}" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" FontSize="20"></TextBlock>
+                        <TextBlock Text ="{Binding Sales, StringFormat=Количество продаж за год: {0}}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="16"></TextBlock>
                         <TextBlock Text="{Binding Phone}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="16" ></TextBlock>
                         <TextBlock Text="{Binding Priority, StringFormat=Приоритетность: {0}}" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" FontSize="16"></TextBlock>
-                        <TextBlock Text="%" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Right" FontSize="16"></TextBlock>
 
-                        <Button Content="Редактировать" Name="EditButton" Click="EditButton_Click"
-                HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="5"></Button>
+                        <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="5">
+                            <Button Content="Редактировать" Name="EditButton" Click="EditButton_Click"></Button>
+                            <Button Name="ProdViewButton" Content="Посмотреть историю" Width="250" Click="ProdViewButton_Click"></Button>
+                        </WrapPanel>
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>

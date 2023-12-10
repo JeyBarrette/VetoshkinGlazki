@@ -26,6 +26,7 @@ namespace Vetoshkin_Glazki_save
 
         List<Agent> CurrentPageList = new List<Agent>();
         List<Agent> TableList;
+        List<int> SelectPriority = new List<int>();
 
         public AgentPage()
         {
@@ -140,11 +141,11 @@ namespace Vetoshkin_Glazki_save
             }
             if (SortBy.SelectedIndex == 3)
             {
-
+                currentGlazki = currentGlazki.OrderBy(p => p.SalePercent).ToList();
             }
             if (SortBy.SelectedIndex == 4)
             {
-
+                currentGlazki = currentGlazki.OrderByDescending(p => p.SalePercent).ToList();
             }
             if (SortBy.SelectedIndex == 5)
             {
@@ -236,6 +237,60 @@ namespace Vetoshkin_Glazki_save
                 AgentListView.ItemsSource = Vetoshkin_GlazkiEntities.GetContext().Agent.ToList();
                 UpdateAgents();
             }
+        }
+
+        private void PriorityButton_Click(object sender, RoutedEventArgs e)
+        {
+            int max_priority = 0;
+            foreach (Agent agentPriority in AgentListView.SelectedItems)
+            {
+                if (max_priority < agentPriority.Priority)
+                    max_priority = agentPriority.Priority;
+            }
+
+            PriorityEdit priorityEdit = new PriorityEdit(max_priority);
+            priorityEdit.ShowDialog();
+
+            if (string.IsNullOrEmpty(priorityEdit.PriorityBox.Text))
+            {
+                return;
+            }
+            if (!string.IsNullOrWhiteSpace(priorityEdit.PriorityBox.Text) && Convert.ToInt32(priorityEdit.PriorityBox.Text) > 0 && priorityEdit.CheckClick == true)
+            {
+
+                foreach (Agent agentPriority in AgentListView.SelectedItems)
+                {
+                    agentPriority.Priority = Convert.ToInt32(priorityEdit.PriorityBox.Text);
+                }
+                try
+                {
+                    Vetoshkin_GlazkiEntities.GetContext().SaveChanges();
+                    MessageBox.Show("Информация сохранена");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
+            UpdateAgents();
+        }
+
+        private void AgentListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (AgentListView.SelectedItems.Count == 1)
+            {
+                PriorityButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                PriorityButton.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void ProdViewButton_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new ProdPage((sender as Button).DataContext as Agent));
+            UpdateAgents();
         }
     }
 }
