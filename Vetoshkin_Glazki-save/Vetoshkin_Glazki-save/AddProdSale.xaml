@@ -22,9 +22,8 @@
         <TextBlock Text="Дата" FontSize="15" Grid.Column="0" Grid.Row="1"
             HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"></TextBlock>
 
-        <ComboBox Grid.Column="1" Grid.Row="0" Height="35" Width="300" FontSize="15"
-            Name="ComboProduct" HorizontalAlignment="Left">
-            <!--TextBoxBase.TextChanged="ComboProduct_TextChanged"-->
+        <ComboBox Grid.Column="1" Grid.Row="0" Height="35" Width="300" FontSize="15" IsEditable="True" ItemsSource="{Binding Path=Product}"
+            Name="ComboProduct" TextSearch.TextPath="Title"  HorizontalAlignment="Left" StaysOpenOnEdit="True">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">

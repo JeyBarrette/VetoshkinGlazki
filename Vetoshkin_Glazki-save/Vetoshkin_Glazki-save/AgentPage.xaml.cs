@@ -277,7 +277,7 @@ namespace Vetoshkin_Glazki_save
 
         private void AgentListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (AgentListView.SelectedItems.Count == 1)
+            if (AgentListView.SelectedItems.Count > 1)
             {
                 PriorityButton.Visibility = Visibility.Visible;
             }
@@ -285,12 +285,6 @@ namespace Vetoshkin_Glazki_save
             {
                 PriorityButton.Visibility = Visibility.Hidden;
             }
-        }
-
-        private void ProdViewButton_Click(object sender, RoutedEventArgs e)
-        {
-            Manager.MainFrame.Navigate(new ProdPage((sender as Button).DataContext as Agent));
-            UpdateAgents();
         }
     }
 }

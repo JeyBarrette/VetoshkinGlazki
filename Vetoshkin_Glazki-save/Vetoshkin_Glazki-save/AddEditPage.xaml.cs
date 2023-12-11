@@ -134,5 +134,10 @@ namespace Vetoshkin_Glazki_save
                 }
             }
         }
+
+        private void ProdViewButton_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new ProdPage((sender as Button).DataContext as Agent));
+        }
     }
 }

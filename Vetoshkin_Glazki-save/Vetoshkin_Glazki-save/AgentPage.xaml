@@ -84,7 +84,6 @@
 
                         <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="5">
                             <Button Content="Редактировать" Name="EditButton" Click="EditButton_Click"></Button>
-                            <Button Name="ProdViewButton" Content="Посмотреть историю" Width="250" Click="ProdViewButton_Click"></Button>
                         </WrapPanel>
 
                         <Grid.RowDefinitions>
